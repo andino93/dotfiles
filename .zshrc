@@ -86,38 +86,28 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #Personal Alias
-alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
-alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-alias fb='filebot -rename *.mkv -non-strict'
-alias brew-update='brew update --verbose  && brew doctor && brew upgrade'
-alias friday='ssh stark@10.0.0.129'
-alias stirfriday='mkdir /Volumes/Friday;sshfs -o reconnect -o volname=Friday stark@10.0.0.129:/home/stark/ /Volumes/Friday/'
-alias sl='sl -aF'
-alias qnap='sudo mkdir /Volumes/Qnap;sudo mount -t nfs -o resvport,rw 10.0.0.211:KODI-MEDIA /Volumes/Qnap'
-alias saturday='ssh andino@10.0.0.4'
-alias ubuntussh='ssh -p 3022 andino@127.0.0.1'
-
-#git alias
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
-alias gd='git diff'
-alias go='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
-
-alias got='git '
-alias get='git '
+alias showFiles="defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app"
+alias hideFiles="defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app"
+alias brew-update="brew update --verbose  && brew doctor && brew upgrade"
+alias sl="sl -aF"
+alias whodis="whoami"
+alias whereami="pwd"
 
 # Git
 alias git=hub
-# export GIT_EDITOR=vim
-#export VISUAL=sublime
+alias gs="git status "
+alias ga="git add "
+alias gd="git diff"
+alias go="git checkout "
+alias gk="gitk --all&"
+alias gx="gitx --all"
+
+alias got="git "
+alias get="git "
 alias gcl="git clone"
 alias gst="git status"
 alias gpl="git pull"
 alias gp="git push"
-#alias gd="git diff | atom"
 alias gc="git commit -v"
 alias gca="git commit -v -a"
 alias gb="git branch"
@@ -127,16 +117,13 @@ alias gbb="git branch -b"
 #squash git commits by typing sq <# of commits> in a git repo
 alias sq="squash"
 alias reb="i_rebase"
-alias lc="colorls"
-alias whodis="whoami"
-alias whereami="pwd"
+
 ###-begin-npm-completion-###
 #
 # npm command completion script
 #
 # Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
 # Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
-#
 
 if type complete &>/dev/null; then
   _npm_completion () {
@@ -150,10 +137,10 @@ if type complete &>/dev/null; then
 
     local si="$IFS"
     IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
-                           COMP_LINE="$COMP_LINE" \
-                           COMP_POINT="$COMP_POINT" \
-                           npm completion -- "${words[@]}" \
-                           2>/dev/null)) || return $?
+          COMP_LINE="$COMP_LINE" \
+          COMP_POINT="$COMP_POINT" \
+          npm completion -- "${words[@]}" \
+      2>/dev/null)) || return $?
     IFS="$si"
     if type __ltrim_colon_completions &>/dev/null; then
       __ltrim_colon_completions "${words[cword]}"
@@ -164,10 +151,10 @@ elif type compdef &>/dev/null; then
   _npm_completion() {
     local si=$IFS
     compadd -- $(COMP_CWORD=$((CURRENT-1)) \
-                 COMP_LINE=$BUFFER \
-                 COMP_POINT=0 \
-                 npm completion -- "${words[@]}" \
-                 2>/dev/null)
+        COMP_LINE=$BUFFER \
+        COMP_POINT=0 \
+        npm completion -- "${words[@]}" \
+      2>/dev/null)
     IFS=$si
   }
   compdef _npm_completion npm
@@ -181,10 +168,10 @@ elif type compctl &>/dev/null; then
     read -ln point
     si="$IFS"
     IFS=$'\n' reply=($(COMP_CWORD="$cword" \
-                       COMP_LINE="$line" \
-                       COMP_POINT="$point" \
-                       npm completion -- "${words[@]}" \
-                       2>/dev/null)) || return $?
+          COMP_LINE="$line" \
+          COMP_POINT="$point" \
+          npm completion -- "${words[@]}" \
+      2>/dev/null)) || return $?
     IFS="$si"
   }
   compctl -K _npm_completion npm
@@ -192,4 +179,3 @@ fi
 ###-end-npm-completion-###
 #
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-
