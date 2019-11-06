@@ -60,7 +60,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # rvm sourcing
-source /Users/${USER}/.rvm/scripts/rvm
+#source /Users/${USER}/.rvm/scripts/rvm
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -94,16 +94,21 @@ alias brew-update="brew update --verbose  && brew doctor && brew upgrade"
 alias sl="sl -aF"
 alias whodis="whoami"
 alias whereami="pwd"
-
+alias bkssh="/usr/bin/ssh -t -A ssh-bastion.infra.futureadvisor.io ssh -t -A "
+alias bssh="/usr/bin/ssh -t -A ssh-bastion1.infra.futureadvisor.com ssh -t -A "
+alias bastion="/usr/bin/ssh -t -A ssh-bastion.infra.futureadvisor.io"
+alias bkssh="/usr/bin/ssh -t -A ssh-bastion.infra.futureadvisor.io ssh -t -A "
+alias blkconn='aws-vault exec blkconn --'
+alias proxy='~/workspace/scratch/proxy.sh'
 # Git
 alias git=hub
 alias gs="git status "
 alias ga="git add "
 alias gd="git diff"
-alias go="git checkout "
+alias gi="git checkout "
 alias gk="gitk --all&"
 alias gx="gitx --all"
-
+alias gap="git add -p "
 alias got="git "
 alias get="git "
 alias gcl="git clone"
@@ -119,6 +124,7 @@ alias gbb="git branch -b"
 #squash git commits by typing sq <# of commits> in a git repo
 alias sq="squash"
 alias reb="i_rebase"
+alias ssl="~/workspace/devops-automation/build/ssl"
 
 ###-begin-npm-completion-###
 #
@@ -188,4 +194,9 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# SOCKS proxy for BLK
+export http_proxy=localhost:8088
+export https_proxy=localhost:8088
